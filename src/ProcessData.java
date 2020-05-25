@@ -1,4 +1,5 @@
 
+import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.List;
 import org.jfree.chart.ChartFactory;
@@ -177,26 +178,13 @@ public class ProcessData {
                System.out.println(c5);
                 System.out.println(c6);
                 System.out.println(ListaFinalE.size());
-                DefaultPieDataset pieDataset = new DefaultPieDataset();
-        pieDataset.setValue("Aprobados: "+c1+"%",c1);
-        pieDataset.setValue("Reprobados: "+c2+"%", c2);
-
-        JFreeChart chart = ChartFactory.createPieChart
-        ("Estadisticas de mortalidad", // Titulo
-        pieDataset,// Datos que se van a graficar
-        true, 
-        true, 
-        false 
-        );
-        ChartPanel pane = new ChartPanel(chart);// Se crea un nuevo panel
-        add(pane);// Se adiciona el panel
-        pane.setBounds(425, 120, 400, 260);
+                panel.removeAll();
+                        panel.add(chartPanel, BorderLayout.CENTER);
+                        panel.validate();
         }
 
     }
 
-    private void add(ChartPanel pane) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
 };
