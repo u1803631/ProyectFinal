@@ -17,46 +17,79 @@ import java.util.Scanner;
  * @author Andrew Romero
  */
 public class ExtraccionArchivo {
-  
 
-    public List<Datoscsv> crearListado(File F) throws FileNotFoundException
-    {
+    private File Archivo;
+    int c = 0;
+    boolean Bandera= false;
+      List<Datoscsv> ListadoFinals = new ArrayList<>();
+
+    ExtraccionArchivo(String path) {
+        this.Archivo = new File(path);
+        
+    }
+
+    ExtraccionArchivo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Datoscsv> crearListado() throws FileNotFoundException {
 
         List<Datoscsv> ListadoFinal = new ArrayList<>();
 
-        try (Scanner scanner = new Scanner(F);) {
+        try (Scanner scanner = new Scanner(this.Archivo);) {
 
             while (scanner.hasNextLine()) {
                 List<String> record = getRecordFromLine(scanner.nextLine());
                 Datoscsv dato = new Datoscsv();
-                dato.Edad = Integer.parseInt(record.get(7));
-                dato.Sexo = (record.get(8));
-                dato.Departamento = (record.get(5));
-                dato.Status = (record.get(10));
 
-                ListadoFinal.add(dato);
+                if (c > 0) {
+                    dato.Departamento = (record.get(4));
+                    dato.Status = (record.get(5));
+                    dato.Edad = Integer.parseInt(record.get(6));
+                    dato.Sexo = (record.get(7));
+                    ListadoFinal.add(dato);
+
+                }
+                c++;
+
             }
+
+           /* for (int i = 0; i < ListadoFinal.size(); i++) {
+
+                System.out.print(ListadoFinal.get(i).Departamento + ",");
+                System.out.print(ListadoFinal.get(i).Status + ",");
+                System.out.print(ListadoFinal.get(i).Edad + ",");
+                System.out.println(ListadoFinal.get(i).Sexo);
+            }
+           */ 
+
             
-            for (int i = 0; i <ListadoFinal.size(); i++) {
-                
-                System.out.println(ListadoFinal.get(i)); 
-            }
+            ListadoFinals= ListadoFinal;
            
             return ListadoFinal;
-
+          
         }
 
     }
 
+
+    
     private List<String> getRecordFromLine(String line) {
+
         List<String> values = new ArrayList<String>();
+
         try (Scanner rowScanner = new Scanner(line)) {
-            rowScanner.useDelimiter(";");
+            rowScanner.useDelimiter(",");
             while (rowScanner.hasNext()) {
+
                 values.add(rowScanner.next());
+
             }
+
         }
+
         return values;
+
     }
 
 }
