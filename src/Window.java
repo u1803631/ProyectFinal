@@ -4,6 +4,8 @@
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -54,7 +56,7 @@ public class Window extends javax.swing.JFrame {
         JboxStatus = new javax.swing.JComboBox<>();
         JboxDepartamento = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Exportar = new javax.swing.JButton();
         GenerarGraficas = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -64,7 +66,7 @@ public class Window extends javax.swing.JFrame {
         panel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         panel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        Nombrearchivo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,10 +95,10 @@ public class Window extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Positivos COVID 19 - Colombia 2020");
 
-        jButton1.setText("Exportar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Exportar.setText("Exportar");
+        Exportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ExportarActionPerformed(evt);
             }
         });
 
@@ -206,10 +208,10 @@ public class Window extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(135, 135, 135)
-                                        .addComponent(jButton1))
+                                        .addComponent(Exportar))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(27, 27, 27)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Nombrearchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel9)))
                                 .addGap(597, 597, 597)
@@ -258,10 +260,10 @@ public class Window extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Nombrearchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(Exportar)
                         .addGap(183, 183, 183)))
                 .addContainerGap())
         );
@@ -269,9 +271,15 @@ public class Window extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarActionPerformed
+     // TODO add your handling code here:
+     String Nombre="D:\\\\"+Nombrearchivo.getText()+".csv";
+     System.out.println(Nombre);
+
+//      writer.writeNext();
+//
+//       writer.close();
+    }//GEN-LAST:event_ExportarActionPerformed
 
     private void GenerarGraficasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarGraficasActionPerformed
       
@@ -449,13 +457,14 @@ public class Window extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Exportar;
     private javax.swing.JButton GenerarGraficas;
     private javax.swing.JComboBox<String> JboxDepartamento;
     private javax.swing.JComboBox<String> JboxEdad;
     private javax.swing.JComboBox<String> JboxSexo;
     private javax.swing.JComboBox<String> JboxStatus;
+    private javax.swing.JTextField Nombrearchivo;
     private javax.swing.JComboBox<String> TipoGrafica;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -467,7 +476,6 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel panel2;
     // End of variables declaration//GEN-END:variables
