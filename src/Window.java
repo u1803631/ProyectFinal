@@ -10,6 +10,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
 /*
@@ -27,6 +28,7 @@ public class Window extends javax.swing.JFrame {
    String SexoF;
    int EdadF;
    String StatusF;
+   String Tipo;
 
     public Window() {
         initComponents();
@@ -273,11 +275,6 @@ public class Window extends javax.swing.JFrame {
        send.Filro1();
        int c1=0,c2=0,c3=0,c4=0,c5=0,c6=0;
        for (int i = 0; i < send.ListaFinalE.size(); i++) {
-
-            System.out.print(send.ListaFinalE.get(i).Departamento + ",");
-            System.out.print(send.ListaFinalE.get(i).Status + ",");
-            System.out.print(send.ListaFinalE.get(i).Edad + ",");
-            System.out.println(send.ListaFinalE.get(i).Sexo);
              if (send.ListaFinalE.get(i).Edad >= 0 && send.ListaFinalE.get(i).Edad <= 18) {
                        c1++;
 
@@ -310,20 +307,25 @@ public class Window extends javax.swing.JFrame {
                     }
             
         }
-       System.out.println(c1);
-       System.out.println(c2);
-       System.out.println(c3);
-       System.out.println(c4);
-       System.out.println(c5);
-       System.out.println(c6);
-            
        
-//       JFreeChart chart= ChartFactory.createBarChart("","cantidad ", "edad", dataset,PlotOrientation.HORIZONTAL, false, false, false);
-//       ChartPanel chartPanel=new ChartPanel(chart);
-//        panel.removeAll();
-//        panel.add(chartPanel, BorderLayout.CENTER);
-//        panel.validate();
+      Tipo=(String) TipoGrafica.getSelectedItem();
+      if(Tipo=="Barras"){
+       DefaultCategoryDataset dataset= new DefaultCategoryDataset();
        
+        dataset.addValue(c1,"","0-18");
+        dataset.addValue(c2,"","19-30");
+        dataset.addValue(c3,"","31-45");
+        dataset.addValue(c4,"","46-60");
+        dataset.addValue(c5,"","61-80");
+        dataset.addValue(c6,"","81-103");
+       
+       
+       JFreeChart chart= ChartFactory.createBarChart("","Edad ", "Cantidad de personas", dataset,PlotOrientation.HORIZONTAL, false, false, false);
+       ChartPanel chartPanel=new ChartPanel(chart);
+        panel.removeAll();
+        panel.add(chartPanel, BorderLayout.CENTER);
+        panel.validate();
+      }
        
     }//GEN-LAST:event_GenerarGraficasActionPerformed
 
