@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.jfree.data.general.DefaultPieDataset;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -251,8 +252,8 @@ public class Window extends javax.swing.JFrame {
        ProcessData send = new ProcessData();
        send.ProcessData(DepartamentoF, StatusF, SexoF, EdadF,archivo.ListadoFinals);
        send.Filro1();
-
-
+       
+       
     }//GEN-LAST:event_GenerarGraficasActionPerformed
 
     private void JboxDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JboxDepartamentoActionPerformed

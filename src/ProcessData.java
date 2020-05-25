@@ -1,6 +1,10 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -55,7 +59,7 @@ public class ProcessData {
             switch (EdadF) {
 
                 case 0:
-
+                    
                     break;
 
                 case 1:
@@ -127,16 +131,72 @@ public class ProcessData {
 
         System.out.println(" " + D + " " + E);
         System.out.println(" " + D + " ");
+        int c1=0,c2=0,c3=0,c4=0,c5=0,c6=0;
         for (int i = 0; i < ListaFinalE.size(); i++) {
 
             System.out.print(ListaFinalE.get(i).Departamento + ",");
             System.out.print(ListaFinalE.get(i).Status + ",");
             System.out.print(ListaFinalE.get(i).Edad + ",");
             System.out.println(ListaFinalE.get(i).Sexo);
-        }
+             if (ListaFinalE.get(i).Edad >= 0 && ListaFinalE.get(i).Edad <= 18) {
+                       c1++;
+
+                    }else{
+                         if (ListaFinalE.get(i).Edad >=19 && ListaFinalE.get(i).Edad <= 30) {
+                        c2++;
+
+                    }else{
+                       if (ListaFinalE.get(i).Edad>= 31 && ListaFinalE.get(i).Edad <= 45) {
+                        c3++;
+
+                    }else{
+                     if (ListaFinalE.get(i).Edad >=46 && ListaFinalE.get(i).Edad <= 60) {
+                        c4++;
+                    }
+                     else{
+                         if (ListaFinalE.get(i).Edad >=61 && ListaFinalE.get(i).Edad <= 80) {
+                        c5++;
+
+                    }
+                         else{
+                           if (ListaFinalE.get(i).Edad >= 81 && ListaFinalE.get(i).Edad <= 103) {
+                        c6 ++;
+
+                    }  
+                         }
+                     }
+                    }
+                    }
+                    }
             
         }
+            System.out.println(c1);
+            System.out.println(c2);
+             System.out.println(c3);
+              System.out.println(c4);
+               System.out.println(c5);
+                System.out.println(c6);
+                System.out.println(ListaFinalE.size());
+                DefaultPieDataset pieDataset = new DefaultPieDataset();
+        pieDataset.setValue("Aprobados: "+c1+"%",c1);
+        pieDataset.setValue("Reprobados: "+c2+"%", c2);
 
+        JFreeChart chart = ChartFactory.createPieChart
+        ("Estadisticas de mortalidad", // Titulo
+        pieDataset,// Datos que se van a graficar
+        true, 
+        true, 
+        false 
+        );
+        ChartPanel pane = new ChartPanel(chart);// Se crea un nuevo panel
+        add(pane);// Se adiciona el panel
+        pane.setBounds(425, 120, 400, 260);
+        }
+
+    }
+
+    private void add(ChartPanel pane) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 };
