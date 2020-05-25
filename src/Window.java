@@ -1,4 +1,6 @@
 
+
+
 import java.awt.BorderLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -61,6 +63,7 @@ public class Window extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         panel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        panel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,15 +139,28 @@ public class Window extends javax.swing.JFrame {
                     .addContainerGap(61, Short.MAX_VALUE)))
         );
 
+        panel2.setBackground(new java.awt.Color(153, 153, 153));
+        panel2.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(61, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -267,13 +283,13 @@ public class Window extends javax.swing.JFrame {
         StatusF=(String) JboxStatus.getSelectedItem();
         EdadF=JboxEdad.getSelectedIndex() ;
 
-          System.out.println(JboxSexo.getSelectedItem());
-          System.out.println(JboxEdad.getSelectedIndex());
+         
           
        ProcessData send = new ProcessData();
        send.ProcessData(DepartamentoF, StatusF, SexoF, EdadF,archivo.ListadoFinals);
        send.Filro1();
-       int c1=0,c2=0,c3=0,c4=0,c5=0,c6=0;
+       
+       int c1=0,c2=0,c3=0,c4=0,c5=0,c6=0,d1=0,d2=0,d3=0,d4=0,d5=0,d6=0;
        for (int i = 0; i < send.ListaFinalE.size(); i++) {
              if (send.ListaFinalE.get(i).Edad >= 0 && send.ListaFinalE.get(i).Edad <= 18) {
                        c1++;
@@ -307,7 +323,42 @@ public class Window extends javax.swing.JFrame {
                     }
             
         }
+       send.NoFilro();
+       for (int i = 0; i < send.ListaFinalN.size(); i++) {
+             if (send.ListaFinalN.get(i).Edad >= 0 && send.ListaFinalN.get(i).Edad <= 18) {
+                       d1++;
+
+                    }else{
+                         if (send.ListaFinalN.get(i).Edad >=19 && send.ListaFinalN.get(i).Edad <= 30) {
+                        d2++;
+
+                    }else{
+                       if (send.ListaFinalN.get(i).Edad>= 31 && send.ListaFinalN.get(i).Edad <= 45) {
+                        d3++;
+
+                    }else{
+                     if (send.ListaFinalN.get(i).Edad >=46 && send.ListaFinalN.get(i).Edad <= 60) {
+                        d4++;
+                    }
+                     else{
+                         if (send.ListaFinalN.get(i).Edad >=61 && send.ListaFinalN.get(i).Edad <= 80) {
+                        d5++;
+
+                    }
+                         else{
+                           if (send.ListaFinalN.get(i).Edad >= 81 && send.ListaFinalN.get(i).Edad <= 103) {
+                        d6 ++;
+
+                    }  
+                         }
+                     }
+                    }
+                    }
+                    }
+            
+        }
        
+      
       Tipo=(String) TipoGrafica.getSelectedItem();
       if(Tipo=="Barras"){
        DefaultCategoryDataset dataset= new DefaultCategoryDataset();
@@ -319,12 +370,27 @@ public class Window extends javax.swing.JFrame {
         dataset.addValue(c5,"","61-80");
         dataset.addValue(c6,"","81-103");
        
-       
+//       
        JFreeChart chart= ChartFactory.createBarChart("","Edad ", "Cantidad de personas", dataset,PlotOrientation.HORIZONTAL, false, false, false);
        ChartPanel chartPanel=new ChartPanel(chart);
         panel.removeAll();
         panel.add(chartPanel, BorderLayout.CENTER);
         panel.validate();
+        DefaultCategoryDataset dataset2= new DefaultCategoryDataset();
+       
+        dataset2.addValue(d1,"","0-18");
+        dataset2.addValue(d2,"","19-30");
+        dataset2.addValue(d3,"","31-45");
+        dataset2.addValue(d4,"","46-60");
+        dataset2.addValue(d5,"","61-80");
+        dataset2.addValue(d6,"","81-103");
+//       
+//       
+       JFreeChart chart2= ChartFactory.createBarChart("","Edad ", "Cantidad de personas", dataset2,PlotOrientation.HORIZONTAL, false, false, false);
+       ChartPanel chartPanel2=new ChartPanel(chart2);
+        panel2.removeAll();
+        panel2.add(chartPanel2, BorderLayout.CENTER);
+        panel2.validate();
       }
        
     }//GEN-LAST:event_GenerarGraficasActionPerformed
@@ -387,5 +453,6 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel panel;
+    private javax.swing.JPanel panel2;
     // End of variables declaration//GEN-END:variables
 }
