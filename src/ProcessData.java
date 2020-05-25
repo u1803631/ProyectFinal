@@ -5,6 +5,7 @@ import java.util.List;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.general.DefaultPieDataset;
 
 /*
@@ -48,7 +49,7 @@ public class ProcessData {
 
     }
 
-    public void Filro1() {
+    public List<Datoscsv> Filro1() {
         D = 0;
         for (int k = 1; k < ListaFinalP.size(); k++) {
               E=0;
@@ -132,56 +133,9 @@ public class ProcessData {
 
         System.out.println(" " + D + " " + E);
         System.out.println(" " + D + " ");
-        int c1=0,c2=0,c3=0,c4=0,c5=0,c6=0;
-        for (int i = 0; i < ListaFinalE.size(); i++) {
-
-            System.out.print(ListaFinalE.get(i).Departamento + ",");
-            System.out.print(ListaFinalE.get(i).Status + ",");
-            System.out.print(ListaFinalE.get(i).Edad + ",");
-            System.out.println(ListaFinalE.get(i).Sexo);
-             if (ListaFinalE.get(i).Edad >= 0 && ListaFinalE.get(i).Edad <= 18) {
-                       c1++;
-
-                    }else{
-                         if (ListaFinalE.get(i).Edad >=19 && ListaFinalE.get(i).Edad <= 30) {
-                        c2++;
-
-                    }else{
-                       if (ListaFinalE.get(i).Edad>= 31 && ListaFinalE.get(i).Edad <= 45) {
-                        c3++;
-
-                    }else{
-                     if (ListaFinalE.get(i).Edad >=46 && ListaFinalE.get(i).Edad <= 60) {
-                        c4++;
-                    }
-                     else{
-                         if (ListaFinalE.get(i).Edad >=61 && ListaFinalE.get(i).Edad <= 80) {
-                        c5++;
-
-                    }
-                         else{
-                           if (ListaFinalE.get(i).Edad >= 81 && ListaFinalE.get(i).Edad <= 103) {
-                        c6 ++;
-
-                    }  
-                         }
-                     }
-                    }
-                    }
-                    }
-            
+        
         }
-            System.out.println(c1);
-            System.out.println(c2);
-             System.out.println(c3);
-              System.out.println(c4);
-               System.out.println(c5);
-                System.out.println(c6);
-                System.out.println(ListaFinalE.size());
-                panel.removeAll();
-                        panel.add(chartPanel, BorderLayout.CENTER);
-                        panel.validate();
-        }
+        return ListaFinalE;
 
     }
 
