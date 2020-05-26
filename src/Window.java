@@ -274,6 +274,29 @@ public class Window extends javax.swing.JFrame {
      String Nombre=Nombrearchivo.getText()+".csv";
      System.out.println(Nombre);
      FileWriter escribir = null;
+        if(  archivo.Bandera == false)
+            
+        {
+            
+          try {
+
+            archivo.crearListado();
+
+        } catch (FileNotFoundException ex) {
+         Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          archivo.Bandera=true;
+       
+       
+        }
+       
+        DepartamentoF=(String) JboxDepartamento.getSelectedItem();
+        SexoF =(String) JboxSexo.getSelectedItem();
+        StatusF=(String) JboxStatus.getSelectedItem();
+        EdadF=JboxEdad.getSelectedIndex() ;
+
+         
+          
       ProcessData send = new ProcessData();
        send.ProcessData(DepartamentoF, StatusF, SexoF, EdadF,archivo.ListadoFinals);
        send.Filro1();
@@ -404,15 +427,37 @@ public class Window extends javax.swing.JFrame {
       Tipo=(String) TipoGrafica.getSelectedItem();
       if(Tipo=="Barras"){
        DefaultCategoryDataset dataset= new DefaultCategoryDataset();
-       
-        dataset.addValue(c1,"","0-18");
-        dataset.addValue(c2,"","19-30");
-        dataset.addValue(c3,"","31-45");
-        dataset.addValue(c4,"","46-60");
-        dataset.addValue(c5,"","61-80");
-        dataset.addValue(c6,"","81-103");
-       
-//       
+       if(c1==0){
+           
+       }else{
+           dataset.addValue(c1,"","0-18");
+       }
+         if(c2==0){
+           
+       }else{
+            dataset.addValue(c2,"","19-30"); 
+         }
+        if(c3==0){
+           
+       }else{
+            dataset.addValue(c3,"","31-45"); 
+         }
+        if(c4==0){
+           
+       }else{
+            dataset.addValue(c4,"","46-60");
+         }
+        if(c5==0){
+           
+       }else{
+            dataset.addValue(c5,"","61-80"); 
+         }
+        if(c2==0){
+           
+       }else{
+            dataset.addValue(c6,"","81-103");
+         }
+              
        JFreeChart chart= ChartFactory.createBarChart("","Edad ", "Cantidad de personas", dataset,PlotOrientation.HORIZONTAL, false, false, false);
        ChartPanel chartPanel=new ChartPanel(chart);
         panel.removeAll();
