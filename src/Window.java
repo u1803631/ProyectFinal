@@ -193,9 +193,7 @@ public class Window extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(31, 31, 31)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel8)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(TipoGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(44, 44, 44)
@@ -247,9 +245,9 @@ public class Window extends javax.swing.JFrame {
                     .addComponent(TipoGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(GenerarGraficas))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,12 +271,34 @@ public class Window extends javax.swing.JFrame {
 
     private void ExportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportarActionPerformed
      // TODO add your handling code here:
-     String Nombre="D:\\\\"+Nombrearchivo.getText()+".csv";
+     String Nombre=Nombrearchivo.getText()+".csv";
      System.out.println(Nombre);
+     FileWriter escribir = null;
+      ProcessData send = new ProcessData();
+       send.ProcessData(DepartamentoF, StatusF, SexoF, EdadF,archivo.ListadoFinals);
+       send.Filro1();
+     try {
+            escribir = new FileWriter(Nombre);
 
-//      writer.writeNext();
-//
-//       writer.close();
+           
+              
+                    escribir.append( send.ListaFinalE+ ",");
+
+               
+
+            
+            //escribir.append(a);
+        } catch (IOException ex) {
+            Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                escribir.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
     }//GEN-LAST:event_ExportarActionPerformed
 
     private void GenerarGraficasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarGraficasActionPerformed
