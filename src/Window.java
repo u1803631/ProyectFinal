@@ -304,13 +304,16 @@ public class Window extends javax.swing.JFrame {
      try {
             escribir = new FileWriter(Nombre);
 
-           
-              
-                    escribir.append( send.ListaFinalE+ ",");
-
+           for(int i=0 ; i<send.ListaFinalE.size();i++){
                
+                 escribir.append( send.ListaFinalE.get(i).Departamento+ ",");
+                 escribir.append( send.ListaFinalE.get(i).Sexo+ ",");
+                 escribir.append( send.ListaFinalE.get(i).Edad+ ",");
+                 escribir.append( send.ListaFinalE.get(i).Status+ ",");
+           }
+              escribir.append("\n");
 
-            
+           
             //escribir.append(a);
         } catch (IOException ex) {
             Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
