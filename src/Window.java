@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
@@ -458,13 +459,61 @@ public class Window extends javax.swing.JFrame {
             dataset.addValue(c6,"","81-103");
          }
               
-       JFreeChart chart= ChartFactory.createBarChart("","Edad ", "Cantidad de personas", dataset,PlotOrientation.HORIZONTAL, false, false, false);
+       JFreeChart chart= ChartFactory.createBarChart("","Edad ", "Cantidad de personas", dataset,PlotOrientation.VERTICAL, false, false, false);
        ChartPanel chartPanel=new ChartPanel(chart);
         panel.removeAll();
         panel.add(chartPanel, BorderLayout.CENTER);
         panel.validate();
+         jLabel7.setText("Grafica Top 3");
         DefaultCategoryDataset dataset2= new DefaultCategoryDataset();
-       
+       int h=0, j=0, k=0, l;
+       while(k==0){
+	l=d1; 
+	if(l<d2)
+		 l = d2; 
+ 	if(l<d3)
+		 l = d3;
+	if(l<d4)
+		 l = d4;
+	if(l<d5)
+		 l = d5;
+	if(l<d6)
+		 l = d6;
+	k=l;
+}
+while(h==0){
+	l=0; 
+	if(l<d1 && d1 != k)
+		 l = d2; 
+	if(l<d2 && d2 != k)
+		 l = d2; 
+ 	if(l<d3 && d3 != k)
+		 l = d3;
+	if(l<d4 && d4 != k)
+		 l = d4;
+	if(l<d5 && d5 != k)
+		 l = d5;
+	if(l<d6 && d6 != k)
+		 l = d6;
+	h=l;
+}
+while(j==0){
+	l=0; 
+	if(l<d1 && d1 != k && d1!= h)
+		 l = d2; 
+	if(l<d2 && d2 !=  k && d2!= h)
+		 l = d2; 
+ 	if(l<d3 && d3 != k && d3!= h)
+		 l = d3;
+	if(l<d4 && d4 != k&& d4!= h)
+		 l = d4;
+	if(l<d5 && d5 != k && d5 != h)
+		 l = d5;
+	if(l<d6 && d6 != k && d6!= h)
+		 l = d6;
+	j=l;
+}
+System.out.println(h+" "+j+" "+k);
         dataset2.addValue(d1,"","0-18");
         dataset2.addValue(d2,"","19-30");
         dataset2.addValue(d3,"","31-45");
@@ -474,6 +523,60 @@ public class Window extends javax.swing.JFrame {
 //       
 //       
        JFreeChart chart2= ChartFactory.createBarChart("","Edad ", "Cantidad de personas", dataset2,PlotOrientation.VERTICAL, false, false, false);
+       ChartPanel chartPanel2=new ChartPanel(chart2);
+        panel2.removeAll();
+        panel2.add(chartPanel2, BorderLayout.CENTER);
+        panel2.validate();
+      } if(Tipo=="Torta"){
+       DefaultPieDataset dataset= new DefaultPieDataset();
+       if(c1==0){
+           
+       }else{
+           dataset.setValue("0-18", c1);
+       }
+         if(c2==0){
+           
+       }else{
+            dataset.setValue("19-30",c2); 
+         }
+        if(c3==0){
+           
+       }else{
+            dataset.setValue("31-45",c3); 
+         }
+        if(c4==0){
+           
+       }else{
+            dataset.setValue("46-60",c4);
+         }
+        if(c5==0){
+           
+       }else{
+            dataset.setValue("61-80",c5); 
+         }
+        if(c2==0){
+           
+       }else{
+            dataset.setValue("81-103",c6);
+         }
+              
+       JFreeChart chart= ChartFactory.createPieChart("edad", dataset);
+       ChartPanel chartPanel=new ChartPanel(chart);
+        panel.removeAll();
+        panel.add(chartPanel, BorderLayout.CENTER);
+        panel.validate();
+        jLabel7.setText("Grafica Total");
+        DefaultPieDataset dataset2= new DefaultPieDataset();
+       
+        dataset2.setValue("0-18",d1);
+        dataset2.setValue("19-30",d2);
+        dataset2.setValue("31-45",d3);
+        dataset2.setValue("46-60",d4);
+        dataset2.setValue("61-80",d5);
+        dataset2.setValue("81-103",d6);
+//       
+//       
+      JFreeChart chart2= ChartFactory.createPieChart("edad", dataset2);
        ChartPanel chartPanel2=new ChartPanel(chart2);
         panel2.removeAll();
         panel2.add(chartPanel2, BorderLayout.CENTER);
